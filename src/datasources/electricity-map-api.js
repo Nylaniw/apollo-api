@@ -29,6 +29,15 @@ class ElectricityMapAPI extends RESTDataSource {
       }
     );
   }
+
+  getCarbonIntensityForecast(zone) {
+    return this.get(
+      "carbon-intensity/forecast",
+      {
+        zone,
+      }
+    )
+  }
 }
 
 module.exports = ElectricityMapAPI;
