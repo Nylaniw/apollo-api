@@ -78,7 +78,7 @@ const resolvers = {
           code: 200,
           success: true,
           message: `Successfully pulled live power breakdown for zone ${zone}`,
-          livePowerBreakdown: livePowerBreakdown.data,
+          powerBreakdown: livePowerBreakdown,
         };
       } catch (err) {
         return {
@@ -93,6 +93,16 @@ const resolvers = {
       return "Input is a valid date";
     }
   },
+  PowerConsumptionBreakdown: {
+    hydrodischarge: ( parent ) => parent ["hydro discharge"],
+    batterydischarge: ( parent ) => parent ["battery discharge"],
+  },
+
+  PowerImportBreakdown: {
+    GBORK: ( parent ) => parent ["GB-ORK"],
+    NONO2: ( parent ) => parent ["NO-NO2"],
+  },
+
   Date: new GraphQLScalarType({
     name: "Date",
     description: "Date custom scalar type",

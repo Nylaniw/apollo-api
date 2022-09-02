@@ -7,6 +7,7 @@ const typeDefs = gql`
     liveCarbonIntensity(zone: String!): LiveCarbonIntensityResponse!
     carbonIntensityHistory(zone: String!): CarbonIntensityHistoryResponse!
     carbonIntensityForecast(zone: String!): CarbonIntensityForecastResponse!
+    livePowerBreakdown(zone: String!): LivePowerBreakdownResponse!
     testQuery(datetime: Date): String
   }
 
@@ -63,10 +64,10 @@ const typeDefs = gql`
     datetime: Date
     updatedAt: Date
     createdAt: Date
-    powerConsumptionBreakdown: [PowerConsumptionBreakdown]
-    powerProductionBreakdown: [PowerProductionBreakdown]
-    powerImportBreakdown: [PowerImportBreakdown]
-    powerExportBreakdown: [PowerExportBreakdown]
+    powerConsumptionBreakdown: PowerConsumptionBreakdown
+    powerProductionBreakdown: PowerProductionBreakdown
+    powerImportBreakdown: PowerImportBreakdown
+    powerExportBreakdown: PowerExportBreakdown
     fossilFreePercentage: Int
     renewablePercentage: Int
     powerConsumptionTotal: Int
@@ -110,16 +111,16 @@ const typeDefs = gql`
     FR: Int
     IE: Int
     NL: Int
-    GB-ORK: Int
-    NO-NO2: Int
+    GBORK: Int
+    NONO2: Int
   }
   type PowerExportBreakdown {
     BE: Int
     FR: Int
     IE: Int
     NL: Int
-    GB-ORK: Int
-    NO-NO2: Int
+    GBORK: Int
+    NONO2: Int
   }
 `;
 
