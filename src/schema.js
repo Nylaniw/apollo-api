@@ -31,6 +31,13 @@ const typeDefs = gql`
     carbonIntensityForecast: CarbonIntensityForecast
   }
 
+  type LivePowerBreakdownResponse {
+    code: Int!
+    success: Boolean!
+    message: String!
+    powerBreakdown: PowerBreakdown
+  }
+
   type CarbonIntensityHistory {
     zone: String
     history: [CarbonIntensity]
@@ -49,6 +56,70 @@ const typeDefs = gql`
     emissionFactorType: String
     isEstimated: Boolean
     estimationMethod: String
+  }
+
+  type PowerBreakdown {
+    zone: String!
+    datetime: Date
+    updatedAt: Date
+    createdAt: Date
+    powerConsumptionBreakdown: [PowerConsumptionBreakdown]
+    powerProductionBreakdown: [PowerProductionBreakdown]
+    powerImportBreakdown: [PowerImportBreakdown]
+    powerExportBreakdown: [PowerExportBreakdown]
+    fossilFreePercentage: Int
+    renewablePercentage: Int
+    powerConsumptionTotal: Int
+    powerProductionTotal: Int
+    powerImportTotal: Int
+    powerExportTotal: Int
+    isEstimated: Boolean
+    estimationMethod: String
+  }
+
+  type PowerConsumptionBreakdown {
+    nuclear: Int
+    geothermal: Int
+    biomass: Int
+    coal: Int
+    wind: Int
+    solar: Int
+    hydro: Int
+    gas: Int
+    oil: Int
+    unknown: Int
+    hydrodischarge: Int
+    batterydischarge: Int
+  }
+  type PowerProductionBreakdown {
+    nuclear: Int
+    geothermal: Int
+    biomass: Int
+    coal: Int
+    wind: Int
+    solar: Int
+    hydro: Int
+    gas: Int
+    oil: Int
+    unknown: Int
+    hydrodischarge: Int
+    batterydischarge: Int
+  }
+  type PowerImportBreakdown {
+    BE: Int
+    FR: Int
+    IE: Int
+    NL: Int
+    GB-ORK: Int
+    NO-NO2: Int
+  }
+  type PowerExportBreakdown {
+    BE: Int
+    FR: Int
+    IE: Int
+    NL: Int
+    GB-ORK: Int
+    NO-NO2: Int
   }
 `;
 

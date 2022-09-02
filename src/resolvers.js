@@ -69,6 +69,26 @@ const resolvers = {
         };
       }
     },
+    livePowerBreakdown: async (_, {zone}, {dataSources}) => {
+      try {
+        const livePowerBreakdown =
+          await dataSources.electricityMapAPI.getLivePowerBreakdown(zone);
+
+        return {
+          code: 200,
+          success: true,
+          message: `Successfully pulled live power breakdown for zone ${zone}`,
+          livePowerBreakdown: livePowerBreakdown.data,
+        };
+      } catch (err) {
+        return {
+          code: err.extensions.response.status,
+          success: false,
+          message: err.extensions.response.body,
+          livePowerBreakdown: null,
+        };
+      }
+    }, 
     testQuery: ( _, {datetime}) => {
       return "Input is a valid date";
     }
