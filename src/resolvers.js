@@ -93,12 +93,22 @@ const resolvers = {
       return "Input is a valid date";
     }
   },
-  PowerConsumptionBreakdown: {
+  PowerProductionBreakdown: {
     hydrodischarge: ( parent ) => parent ["hydro discharge"],
     batterydischarge: ( parent ) => parent ["battery discharge"],
   },
 
   PowerImportBreakdown: {
+    GBORK: ( parent ) => parent ["GB-ORK"],
+    NONO2: ( parent ) => parent ["NO-NO2"],
+  },
+
+  PowerConsumptionBreakdown: {
+    hydrodischarge: ( parent ) => parent ["hydro discharge"],
+    batterydischarge: ( parent ) => parent ["battery discharge"],
+  },
+
+  PowerExportBreakdown: {
     GBORK: ( parent ) => parent ["GB-ORK"],
     NONO2: ( parent ) => parent ["NO-NO2"],
   },
