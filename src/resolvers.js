@@ -89,9 +89,29 @@ const resolvers = {
         };
       }
     }, 
+    powerBreakdownHistory: async (_, {zone}, {dataSources}) => {
+      try {
+        const powerBreakdownHistory =
+          await dataSources.electricityMapAPI.getPowerBreakdownHistory(zone);
+
+        return {
+          code: 200,
+          success: true,
+          message: `Successfully pulled live power breakdown history for zone ${zone}`,
+          powerBreakdownHistory,
+        };
+      } catch (err) {
+        return {
+          code: err.extensions.response.status,
+          success: false,
+          message: err.extensions.response.body,
+          powerBreakdownHistory: null,
+        };
+      }
+    }, 
     testQuery: ( _, {datetime}) => {
       return "Input is a valid date";
-    }
+    },
   },
   PowerProductionBreakdown: {
     hydrodischarge: ( parent ) => parent ["hydro discharge"],

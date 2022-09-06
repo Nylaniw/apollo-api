@@ -52,6 +52,20 @@ class ElectricityMapAPI extends RESTDataSource {
       }
     );
   }
+
+  getPowerBreakdownHistory(zone) {
+    return this.get(
+      "power-breakdown/history",
+      {
+        zone,
+      },
+      {
+        headers: {
+          'auth-token': AUTH_TOKEN,
+        },
+      }
+    );
+  }
 }
 
 module.exports = ElectricityMapAPI;

@@ -8,6 +8,7 @@ const typeDefs = gql`
     carbonIntensityHistory(zone: String!): CarbonIntensityHistoryResponse!
     carbonIntensityForecast(zone: String!): CarbonIntensityForecastResponse!
     livePowerBreakdown(zone: String!): LivePowerBreakdownResponse!
+    powerBreakdownHistory(zone: String!): PowerBreakdownHistoryResponse!
     testQuery(datetime: Date): String
   }
 
@@ -37,6 +38,13 @@ const typeDefs = gql`
     success: Boolean!
     message: String!
     powerBreakdown: PowerBreakdown
+  }
+
+  type PowerBreakdownHistoryResponse {
+    code: Int!
+    success: Boolean!
+    message: String!
+    powerBreakdownHistory: PowerBreakdownHistory
   }
 
   type CarbonIntensityHistory {
@@ -122,6 +130,12 @@ const typeDefs = gql`
     GBORK: Int
     NONO2: Int
   }
+
+  type PowerBreakdownHistory {
+    zone: String
+    history: [PowerBreakdown]
+  }
+
 `;
 
 module.exports = typeDefs
